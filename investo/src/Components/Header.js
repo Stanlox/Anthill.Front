@@ -24,9 +24,9 @@ export default class Header extends Component {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="mr-auto">
-                                <Nav.Link href="/">Главная</Nav.Link>
-                                <Nav.Link href="/about">Это муравейник</Nav.Link>
-                                <Nav.Link href="/contacts">Контакты</Nav.Link>
+                                <Nav.Link href="/"><font size="4" face="Arial">Главная</font></Nav.Link>
+                                <Nav.Link href="/about"><font size="4" face="Arial">Это муравейник</font></Nav.Link>
+                                <Nav.Link href="/contacts"><font  size="4" face="Arial">Контакты</font></Nav.Link>
                             </Nav>
                             <Form inline>
                                 <FormControl
