@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../img/logo.jpeg';
-import { Navbar, Nav, FormControl, Container, Button, Form } from 'react-bootstrap';
+import { Navbar, Nav, FormControl, Container, Button, Form, NavbarBrand } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
@@ -26,13 +26,13 @@ export default class Header extends Component {
                             <Nav className="mr-auto">
                                 <Nav.Link href="/"><font size="4" face="Arial">Главная</font></Nav.Link>
                                 <Nav.Link href="/about"><font size="4" face="Arial">Это муравейник</font></Nav.Link>
-                                <Nav.Link href="/contacts"><font  size="4" face="Arial">Контакты</font></Nav.Link>
+                                <Nav.Link href="/contacts"><font  size="4" face="Arial">Задать вопрос</font></Nav.Link>
                             </Nav>
                             <Form inline>
-                                <FormControl
+                                <FormControl    
                                     type="text"
                                     placeholder="Search"
-                                    className="mr-sm-2"
+                                    className="mr-sm-2" 
                                 />
                                 <Button variant="outline-info">Search</Button>
                             </Form>
@@ -42,9 +42,9 @@ export default class Header extends Component {
 
                 <Router>
                     <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/about" component={About} />
-                        <Route exact path="/contacts" component={Contacts} />
+                        <Route exact path='/' component={Home} />
+                        <Route exact path='/about' component={About} />
+                        <Route exact path='/contacts' component={Contacts} />
                     </Switch>
                 </Router>
             </>

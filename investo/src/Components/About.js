@@ -11,15 +11,9 @@ import RenderGoogleMap from './YandexMap';
 export default class About extends Component {
     constructor(props) {
         super(props);
-    }
-    
-    componentDidUpdate(prevProps){
-        if(this.prevProps.mountOnEnter !== prevProps.mountOnEnter){
-            this.mountOnEnter=this.prevProps.mountOnEnter;
-        }
-        console.log("update");
-    }
 
+    }
+  
     render() {
         return (
             <Container>
@@ -157,8 +151,8 @@ export default class About extends Component {
                                     <h3><b>Как долго проект храниться на муравейнике?</b></h3>
                                     <p>Проекты не удаляются с сайта Муравейнька после их завершения. В финансировании проекта принимает участие много людей, и он перестает быть собственностью одного автора, а становится результатом работы сообщества.</p>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="fourth" mountOnEnter={true}>
-                                        <RenderGoogleMap/>
+                                <Tab.Pane eventKey="fourth" unmountOnExit mountOnEnter>
+                                        <RenderGoogleMap/>       
                                 </Tab.Pane>
                             </Tab.Content>
                         </Col>

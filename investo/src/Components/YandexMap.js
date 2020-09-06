@@ -1,22 +1,35 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import '../style/YandexMap.css';
 
 
-export default class RenderGoogleMap extends Component{
-    componentDidMount(){
-        const script = document.createElement("script");    
-        script.src = "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5c646b1b72c5b5f495d84f42e09035d21936513905c918480b6875af38cef75a&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true";
-        script.async = true;
-        document.body.append(script);
+export default class RenderGoogleMap extends Component {
+    componentDidMount() {
+        window.ymaps.ready(() => {
+            this.myMap = new window.ymaps.Map("map", {
+                center: [53.877852, 27.542990],
+                zoom: 17
+            });
+        });
     }
 
-    componentWillUnmount(){
-        const script = document.createElement("script");    
-        script.src = "https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A5c646b1b72c5b5f495d84f42e09035d21936513905c918480b6875af38cef75a&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true";
-        script.async = true;
-        document.body.replaceChild(script);
+    componentWillUnmount() {
+        this.myMap.destroy();
     }
 
-    render(){
-        return(<p></p>);
+    render() {
+        return (
+            <div>
+                <div className="flex-container">
+                    <div className="first-block">
+                        <h1><b>Контакты</b></h1>
+                        <h4>220039, г.Минск, ул.Воронянского, д.10<bt /></h4>
+                    </div>
+                    <div className="second-block mb-2">
+                        <h4><br /><br />Контактый телефон: +375 (44) 535-88-58</h4>
+                    </div>
+                </div>
+                <div id="map" style={{ 'width': 800, 'height': 400 }} className="mt-4"></div>
+            </div>
+        );
     }
 }
