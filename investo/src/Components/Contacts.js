@@ -1,39 +1,63 @@
 import React, { Component } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import { FormErrors } from './ContactsErrors';
 
 export default class Contacts extends Component {
     constructor(props) {
         super(props);
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeMessage = this.onChangeMessage.bind(this);
+
 
 
         this.state = {
             email: '',
             name: '',
-            message: ''
+            message: '',
+            emailValid: false,
+            nameValid: false,
+            formErrors: { email: '', name: '' }
         }
     }
 
-    onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
-        })
+    handleUserInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({ [name]: value },
+            () => { this.validateField(name, value) });
     }
 
-    onChangeName(e) {
+    validateField(fieldName, value) {
+        let fieldValidatorsErrors = this.state.formErrors;
+        let emailValid = this.state.emailValid;
+        let nameValid = this.state.nameValid;
+
+        switch (fieldName) {
+            case 'email':
+                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidatorsErrors.email = emailValid ? '' : 'is invalid';
+                break;
+            case 'name':
+                nameValid = value.length >= 4;
+                fieldValidatorsErrors.name = nameValid ? '' : 'is too short';
+                break;
+            default:
+                break;
+        }
+
         this.setState({
-            name: e.target.value
-        })
+            formErrors: fieldValidatorsErrors,
+            emailValid: emailValid,
+            nameValid: nameValid
+        }, this.valideForm);
     }
 
-    onChangeMessage(e) {
-        this.setState({
-            message: e.target.value
-        })
+    validateForm() {
+        this.setState({ formValid: this.state.emailValid && this.state.nameValid });
+    }
+
+    errorClass(error) {
+        return (error.length === 0 ? '' : 'has-error');
     }
 
     onSubmit(e) {
@@ -41,23 +65,26 @@ export default class Contacts extends Component {
     }
     render() {
         return (
-            <Container style={{backgroundColor:"#c0c0c1", height:"50vh"}}>
-                <Container style={{ width: "600px"}}>
+            <Container style={{ backgroundColor: "#c0c0c1", height: "70vh" }}>
+                <Container style={{ width: "600px" }}>
                     <h1 className="text-center mt-3">Обратная связь</h1>
+                    <div class="panel panel-default">
+                        <FormErrors formErrors={this.state.formErrors}/>
+                    </div>
                     <Form onSubmit={this.onSubmit}>
-                        <Form.Group controlId="formBasicEmail" onChange={this.onChangeEmail}>
+                        <Form.Group className={this.errorClass(this.state.formErrors.email)} controlId="formBasicEmail" onChange={this.handleUserInput}>
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Control name="email" placeholder="Enter email" />
                         </Form.Group>
-                        <Form.Group controlId="formBasicPassword" onChange={this.onChangeName}>
+                        <Form.Group  controlId="formBasicPassword" onChange={this.handleUserInput}>
                             <Form.Label>Имя</Form.Label>
-                            <Form.Control as="textarea" rows="1" />
+                            <Form.Control name="name" className={this.errorClass(this.state.formErrors.name)} as="textarea" rows="1" />
                         </Form.Group>
-                        <Form.Group controlId="formBasicPassword" onChange={this.onChangeMessage}>
+                        <Form.Group controlId="formBasicPassword" onChange={this.handleUserInput}>
                             <Form.Label>Вопрос</Form.Label>
                             <Form.Control as="textarea" rows="3" placeholder="Текст сообщения..." />
                         </Form.Group>
-                        <Button variant="primary" type="submit">Отправить</Button>
+                        <Button variant="primary" type="submit" disabled={!this.state.formValid}>Отправить</Button>
                     </Form>
                 </Container>
             </Container>
