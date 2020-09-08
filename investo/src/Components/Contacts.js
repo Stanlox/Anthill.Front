@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
-import { FormErrors } from './ContactsErrors';
+import { FormErrors } from './Errors';
 
 export default class Contacts extends Component {
     constructor(props) {
         super(props);
 
         this.onSubmit = this.onSubmit.bind(this);
-
-
-
+        
         this.state = {
             email: '',
             name: '',
@@ -65,7 +63,7 @@ export default class Contacts extends Component {
     }
     render() {
         return (
-            <Container style={{ backgroundColor: "#c0c0c1", height: "70vh" }}>
+            <Container style={{ backgroundColor: "#c0c0c1", height: "60vh" }}>
                 <Container style={{ width: "600px" }}>
                     <h1 className="text-center mt-3">Обратная связь</h1>
                     <div class="panel panel-default">
@@ -74,9 +72,9 @@ export default class Contacts extends Component {
                     <Form onSubmit={this.onSubmit}>
                         <Form.Group className={this.errorClass(this.state.formErrors.email)} controlId="formBasicEmail" onChange={this.handleUserInput}>
                             <Form.Label>Email</Form.Label>
-                            <Form.Control name="email" placeholder="Enter email" />
+                            <Form.Control name="email"/>
                         </Form.Group>
-                        <Form.Group  controlId="formBasicPassword" onChange={this.handleUserInput}>
+                        <Form.Group  controlId="formBasicPassword" onChange={this.handleUserInput} className={this.errorClass(this.state.formErrors.name)}>
                             <Form.Label>Имя</Form.Label>
                             <Form.Control name="name" className={this.errorClass(this.state.formErrors.name)} as="textarea" rows="1" />
                         </Form.Group>

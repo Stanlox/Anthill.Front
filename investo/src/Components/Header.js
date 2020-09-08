@@ -5,8 +5,16 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
 import Contacts from './Contacts';
+import Login from '../Auth/Login';
+import Register from '../Auth/Register';
 
 export default class Header extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+
     render() {
         return (
             <>
@@ -26,13 +34,13 @@ export default class Header extends Component {
                             <Nav className="mr-auto">
                                 <Nav.Link href="/"><font size="4" face="Arial">Главная</font></Nav.Link>
                                 <Nav.Link href="/about"><font size="4" face="Arial">Это муравейник</font></Nav.Link>
-                                <Nav.Link href="/contacts"><font  size="4" face="Arial">Задать вопрос</font></Nav.Link>
+                                <Nav.Link href="/contacts"><font size="4" face="Arial">Задать вопрос</font></Nav.Link>
                             </Nav>
                             <Form inline>
-                                <FormControl    
+                                <FormControl
                                     type="text"
                                     placeholder="Search"
-                                    className="mr-sm-2" 
+                                    className="mr-sm-2"
                                 />
                                 <Button variant="outline-info">Search</Button>
                             </Form>
@@ -40,11 +48,20 @@ export default class Header extends Component {
                     </Container>
                 </Navbar>
 
+                <Form style={{ position: "absolute", top: "10px", right: "95px" }}>
+                    <Button variant="btn btn-success" type="submit" href="/login">Log in</Button>
+                </Form>
+                <Form style={{ position: "absolute", top: "10px", right: "10px" }}>
+                    <Button variant="btn btn-success" type="submit" href="/register">Sign in</Button>
+                </Form>
+
                 <Router>
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/about' component={About} />
                         <Route exact path='/contacts' component={Contacts} />
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/register' component={Register}/>
                     </Switch>
                 </Router>
             </>
