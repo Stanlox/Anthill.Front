@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Container, Button } from 'react-bootstrap';
 import {FormErrors} from '../Components/Errors'; 
+import axios from 'axios';
 
 export default class Register extends Component {
     constructor(props) {
@@ -15,12 +16,34 @@ export default class Register extends Component {
             emailValid: false,
             passwordValid: false,
             nameValid: false,
+            formValid: false,
             formErrors: { email: '', name: '', password: '' }
         }
     }
 
     onSubmit(e) {
         e.preventDefault();
+        const { history } = this.props; 
+            let name = this.state.name;
+            let password = this.state.password;
+            let email = this.state.email;
+        
+       
+        const request = axios({
+            headers: { 
+                'content-type': 'application/json'
+            },
+            method: 'post',
+            url: 'https://localhost:44344/api/Account/Register',
+            params: {
+                email,
+                password,
+                name
+            }
+        })
+        .then((response) => response.data)
+        .catch((error) => error);
+
     }
 
     handleUserInput = (e) => {
@@ -58,7 +81,7 @@ export default class Register extends Component {
             emailValid: emailValid,
             nameValid: nameValid,
             passwordValid: passwordValid
-        }, this.valideForm);
+        }, this.validateForm);
     }
 
     validateForm() {
@@ -88,6 +111,7 @@ export default class Register extends Component {
                         <Form.Control name="password" placeholder="Enter password..." />
                     </Form.Group>
                     <Button type="submit" variant="btn btn-secondary" disabled={!this.state.formValid}>Sign in</Button>
+                    {console.log(this.state.formValid)}
                     <a href='javascript:history.go(-1)' className="btn btn-secondary" style={{ margin: "8px" }}>Назад</a>
                 </Form>
             </Container>

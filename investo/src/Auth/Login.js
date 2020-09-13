@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import { FormErrors } from '../Components/Errors';
 import 'font-awesome/css/font-awesome.min.css';
+import axios from 'axios';
 
 
 export default class Login extends Component {
@@ -13,6 +14,7 @@ export default class Login extends Component {
             password: '',
             emailValid: false,
             passwordValid: false,
+            formValid: false,
             formErrors: { email: '', password: '' }
         }
 
@@ -48,7 +50,7 @@ export default class Login extends Component {
             formErrors: fieldValidatorsErrors,
             emailValid: emailValid,
             passwordValid: passwordValid
-        }, this.valideForm);
+        }, this.validateForm);
     }
 
     validateForm() {
@@ -61,6 +63,25 @@ export default class Login extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+        const { history } = this.props; 
+            let password = this.state.password;
+            let email = this.state.email;
+        
+       
+        const request = axios({
+            headers: { 
+                'content-type': 'application/json'
+            },
+            method: 'post',
+            url: 'https://localhost:44344/api/Account/Login',
+            params: {
+                email,
+                password
+            }
+        })
+        .then((response) => response.data)
+        .catch((error) => error);
+
     }
 
     render() {
