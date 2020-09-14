@@ -7,6 +7,7 @@ import About from './About';
 import Contacts from './Contacts';
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
+import { Find } from './Find';
 
 export default class Header extends Component {
     constructor(props) {
@@ -36,14 +37,7 @@ export default class Header extends Component {
                                 <Nav.Link href="/about"><font size="4" face="Arial">Это муравейник</font></Nav.Link>
                                 <Nav.Link href="/contacts"><font size="4" face="Arial">Задать вопрос</font></Nav.Link>
                             </Nav>
-                            <Form inline>
-                                <FormControl
-                                    type="text"
-                                    placeholder="Search"
-                                    className="mr-sm-2"
-                                />
-                                <Button variant="outline-info">Search</Button>
-                            </Form>
+                            <Find/>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
