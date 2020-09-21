@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import logo from '../img/logo.jpeg';
-import { Navbar, Nav, FormControl, Container, Button, Form, NavbarBrand } from 'react-bootstrap';
+import logo from '../../img/logo.jpeg';
+import { Navbar, Nav, FormControl, Container, Button, Form } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from './Home';
-import About from './About';
-import Contacts from './Contacts';
-import Login from '../Auth/Login';
-import Register from '../Auth/Register';
+import Home from '../Home';
+import About from '../About';
+import Contacts from '../Contacts';
+import Login from '../../Auth/Login';
+import Register from '../../Auth/Register';
 import { Find } from './Find';
+import DropdownCategoryProject from './Dropdown';
 
 export default class Header extends Component {
     constructor(props) {
@@ -27,22 +28,23 @@ export default class Header extends Component {
                                 height="30"
                                 width="30"
                                 className="d-inline-block align-top"
-                                alt="Logo"
+                                alt="Logo" s
                             />
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="mr-auto">
+                                <DropdownCategoryProject />
                                 <Nav.Link href="/"><font size="4" face="Arial">Главная</font></Nav.Link>
                                 <Nav.Link href="/about"><font size="4" face="Arial">Это муравейник</font></Nav.Link>
                                 <Nav.Link href="/contacts"><font size="4" face="Arial">Задать вопрос</font></Nav.Link>
                             </Nav>
-                            <Find/>
+                            <Find />
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
 
-                <Form style={{ position: "absolute", top: "10px", right: "95px" }}>
+                <Form style={{ position: "absolute", top:"10px", right: "95px" }}>
                     <Button variant="btn btn-success" type="submit" href="/login">Log in</Button>
                 </Form>
                 <Form style={{ position: "absolute", top: "10px", right: "10px" }}>
@@ -55,7 +57,7 @@ export default class Header extends Component {
                         <Route exact path='/about' component={About} />
                         <Route exact path='/contacts' component={Contacts} />
                         <Route exact path='/login' component={Login} />
-                        <Route exact path='/register' component={Register}/>
+                        <Route exact path='/register' component={Register} />
                     </Switch>
                 </Router>
             </>
