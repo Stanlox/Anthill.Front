@@ -48,7 +48,6 @@ export class AllProjects extends Component {
     renderAllProjects(projects) {
         return (
             <Table className="table table-bordered table-hover">
-                {console.log("yes")}
                 <thead>
                     <tr>
                         <th>id</th>

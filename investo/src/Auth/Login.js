@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { FormErrors } from '../Components/Errors';
+import { FormErrors } from '../Components/Errors/InputUserErrors';
 import 'font-awesome/css/font-awesome.min.css';
 import axios from 'axios';
 

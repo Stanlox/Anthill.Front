@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Container, Button } from 'react-bootstrap';
-import {FormErrors} from '../Components/Errors'; 
+import {FormErrors} from '../Components/Errors/InputUserErrors'; 
 import axios from 'axios';
 
 export default class Register extends Component {

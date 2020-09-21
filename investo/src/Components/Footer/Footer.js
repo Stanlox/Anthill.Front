@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from 'styled-components';
-import logo from '../img/logo.jpeg';
+import logo from '../../img/logo.jpeg';
 
 
 function Footer() {

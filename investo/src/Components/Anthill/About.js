@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import aboutCrow from '../img/aboutCrow.jpg';
+import aboutCrow from '../../img/aboutCrow.jpg';
 import { Container, Tab, Nav, Row, Col } from 'react-bootstrap';
-import authorCrow from '../img/authorCrow.jpg';
-import backerCrow from '../img/crowBack.jpg';
-import businessCrow from '../img/businessCrow.jpg';
-import team from '../img/team.jpg';
-import RenderGoogleMap from './YandexMap';
+import authorCrow from '../../img/aboutCrow.jpg';
+import backerCrow from '../../img/crowBack.jpg';
+import businessCrow from '../../img/businessCrow.jpg';
+import team from '../../img/team.jpg';
+import RenderGoogleMap from '../Anthill/YandexMap';
 
 
 export default class About extends Component {

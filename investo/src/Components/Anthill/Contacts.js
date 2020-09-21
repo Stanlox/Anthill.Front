@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
-import { FormErrors } from './Errors';
+import { FormErrors } from '../Errors/InputUserErrors';
 
 export default class Contacts extends Component {
     constructor(props) {
