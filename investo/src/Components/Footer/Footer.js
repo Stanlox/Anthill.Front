@@ -1,54 +1,67 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from 'styled-components';
 import logo from '../../img/logo.jpeg';
+import { Container, Row, Nav } from 'react-bootstrap';
+import About from "../Anthill/About";
+import { Route, Router, Switch, Link } from "react-router-dom";
 
 
-function Footer() {
-    return (
-        <FooterContainer className="main-footer">
-            <div className="footer-middle">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-3 col-sm-6">
-                            <h4>Об муравейнике</h4>
-                            <ul className="list-unstyled">
-                                <li><a href="/">Об муравейнике</a></li>
-                                <li><a href="/">Команда</a></li>
-                                <li><a href="/">Контакты</a></li>
-                                <li><a href="/">Задать вопрос</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-md-3 col-sm-6">
-                            <h4>Поддержка</h4>
-                            <ul className="list-unstyled">
-                                <li><a href="/">О краунфандинге</a></li>
-                                <li><a href="/">Правила Муравейника</a></li>
-                                <li><a href="/">Помощь</a></li>
-                                <li><a href="/">Проекты</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-md-3 col-sm-6">
-                            <img
-                                src={logo}
-                                height="150"
-                                width="150"
-                                className="d-inline-block align-top"
-                                alt="Logo"
-                            />
-                        </div>
+export default class Footer extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+
+
+    render() {
+        return (
+            <>
+                <FooterContainer className="main-footer">
+                    <div className="footer-middle">
+                        <Container>
+                            <Row>
+                                <div className="col-md-3 col-sm-6">
+                                    <h4>Об муравейнике</h4>
+                                    <ul className="list-unstyled">
+                                        <li><Link to={{ pathname: "/about", state :"first"}}>Об муравейнике</Link></li>
+                                        <li><Link to={{ pathname: "/about", state :"first"}}>Команда</Link></li>
+                                        <li><Link to={{ pathname: "/about", state: "fourth" }}>Контакты</Link></li>
+                                        <li><Link to={{ pathname: "/contacts"}}>Задать вопрос</Link></li>
+                                    </ul>
+                                </div>
+                                <div className="col-md-3 col-sm-6">
+                                    <h4>Поддержка</h4>
+                                    <ul className="list-unstyled">
+                                        <li><Link to= {{ pathname: "/about", state: "second"}}>О краунфандинге</Link></li>
+                                        <li><Link to= {{ pathname: "/about", state: "third" }}>Помощь</Link></li>
+                                        <li><a href="/">Проекты</a></li>
+                                    </ul>
+                                </div>
+                                <div className="col-md-3 col-sm-6">
+                                    <img
+                                        src={logo}
+                                        height="150"
+                                        width="150"
+                                        className="d-inline-block align-top"
+                                        alt="Logo"
+                                    />
+                                </div>
+                            </Row>
+                            <div className="footer-bottom">
+                                <p className="text-xs-center">
+                                    &copy;{new Date().getFullYear()} Муравейник
+                                </p>
+                            </div>
+                        </Container>
                     </div>
-                    <div className="footer-bottom">
-                        <p className="text-xs-center">
-                            &copy;{new Date().getFullYear()} Муравейник
-                            </p>
-                    </div>
-                </div>
-            </div>
-        </FooterContainer>
-    );
+                </FooterContainer>
+
+
+            </>
+        );
+    }
 }
 
-export default Footer;
 
 const FooterContainer = styled.footer`
 .footer-middle{

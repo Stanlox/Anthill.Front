@@ -33,7 +33,9 @@ export default class Home extends Component {
         return (
             <div className="container">
                 <h2 className="text-center mt-4">Завершающиеся</h2>
+                { console.log(projects)}
                 {
+
                     projects.map(project =>
                         <CardDeck className="m-4">
                             <Card>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../../img/logo.jpeg';
-import { Navbar, Nav, FormControl, Container, Button, Form } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button, Form } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Home from '../Home';
 import About from '../Anthill/About';
@@ -21,7 +21,6 @@ export default class Header extends Component {
 
     }
 
-
     render() {
         return (
             <>
@@ -39,37 +38,42 @@ export default class Header extends Component {
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="mr-auto">
-                                <DropdownCategoryProject />
-                                <Nav.Link href="/"><font size="4" face="Arial">Главная</font></Nav.Link>
-                                <Nav.Link href="/about"><font size="4" face="Arial">Это муравейник</font></Nav.Link>
-                                <Nav.Link href="/contacts"><font size="4" face="Arial">Задать вопрос</font></Nav.Link>
+                                <Container>
+                                    <DropdownCategoryProject />
+                                    <Link style={{ textDecoration: 'none' }} to="/"><font size="4" face="Arial" className="text-muted">Главная</font></Link>
+                                    <Link style={{ textDecoration: 'none' }} to="/about"><font size="4" face="Arial" className="text-muted ml-2">Это муравейник</font></Link>
+                                    <Link style={{ textDecoration: 'none' }} to="/contacts"><font size="4" face="Arial" className="text-muted ml-2">Задать вопрос</font></Link>
+                                </Container>
                             </Nav>
                             <Find />
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
 
-                <Form style={{ position: "absolute", top:"10px", right: "95px" }}>
-                    <Button variant="btn btn-success" type="submit" href="/login">Log in</Button>
-                </Form>
-                <Form style={{ position: "absolute", top: "10px", right: "10px" }}>
-                    <Button variant="btn btn-success" type="submit" href="/register">Sign in</Button>
-                </Form>
-
-                <Router>
+                <Link to="/login">
+                    <Form style={{ position: "absolute", top: "10px", right: "95px" }}>
+                        <Button variant="btn btn-success" type="submit">Log in</Button>
+                    </Form>
+                </Link>
+                <Link to="/register">
+                    <Form style={{ position: "absolute", top: "10px", right: "10px" }}>
+                        <Button variant="btn btn-success" type="submit">Sign in</Button>
+                    </Form>
+                </Link>
+                <>
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route exact path='/about' component={About} />
                         <Route exact path='/contacts' component={Contacts} />
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/register' component={Register} />
-                        <Route exact path='/all' component={All}/>
-                        <Route exact path='/business' component={Business}/>
-                        <Route exact path='/design' component={Design}/>
-                        <Route exact path='/music' component={Music}/>
-                        <Route exact path='/initiatives' component={Initiatives}/>
+                        <Route exact path='/all' component={All} />
+                        <Route exact path='/business' component={Business} />
+                        <Route exact path='/design' component={Design} />
+                        <Route exact path='/music' component={Music} />
+                        <Route exact path='/initiatives' component={Initiatives} />
                     </Switch>
-                </Router>
+                </>
             </>
         );
     }

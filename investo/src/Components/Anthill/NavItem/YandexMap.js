@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../style/YandexMap.css';
+import '../../../style/YandexMap.css';
 
 
 export default class RenderGoogleMap extends Component {
