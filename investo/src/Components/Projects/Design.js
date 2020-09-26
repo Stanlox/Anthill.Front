@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Media, Container, Col, Row } from 'react-bootstrap';
+import { Media, Container, Col, Row, Button } from 'react-bootstrap';
 import Navigation from './Navigation';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 export default class Design extends Component {
     constructor(props) {
@@ -14,8 +15,8 @@ export default class Design extends Component {
     }
 
     componentDidMount() {
-        const categoryName = "дизайн";
-        axios.get("https://localhost:44344/api/Search/Search/"+ categoryName).then(result => {
+        const category = "Дизайн";
+        axios.get(`https://localhost:44344/api/Search/Category?nameCategory=${category}`).then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
         })
@@ -46,7 +47,7 @@ export default class Design extends Component {
                         {
                             projects.map(project =>
                                 <Media className="m-5">
-                                    <img src={`/src/img/Projects/${project.id}.jpg`}
+                                    <img src={require(`../../img/Projects/${project.id}.jpg`)}
                                         className="mr-3"
                                         height={200}
                                         width={300}
@@ -54,6 +55,9 @@ export default class Design extends Component {
                                     <Media.Body>
                                         <h5>{project.name}</h5>
                                         <p>{project.shortDescription}</p>
+                                        <Link to={{ pathname: "/show", state: project }}>
+                                            <Button variant="outline-info" className="mb-1">Подробнее</Button>
+                                        </Link>
                                     </Media.Body>
                                 </Media>
                             )

@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import { Media, Container, Col, Row, Button} from 'react-bootstrap';
+import { Media, Container, Col, Row, Button } from 'react-bootstrap';
 import Navigation from './Navigation';
 import axios from 'axios';
-import {Link} from "react-router-dom";
 
-export default class Business extends Component {
+export default class Completed extends Component {
     constructor(props) {
         super(props);
 
+        this.getDate = this.getDate.bind(this);
         this.state = {
             projects: [],
             loading: true
         }
     }
 
+
+
     componentDidMount() {
-        const category = "Бизнес";
-        axios.get(`https://localhost:44344/api/Search/Category?nameCategory=${category}`).then(result => {
+        axios.get("https://localhost:44344/api/Search/Completed").then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
         })
@@ -28,7 +29,7 @@ export default class Business extends Component {
                 <em>Loading...</em>
             </p>
         ) : (
-                this.renderAllBusinessProjects(this.state.projects)
+                this.renderAllCompletedProjects(this.state.projects)
             );
 
         return (
@@ -38,7 +39,18 @@ export default class Business extends Component {
         );
     }
 
-    renderAllBusinessProjects(projects) {
+    getDate(date) {
+        var options = {
+            day: 'numeric',
+            month: 'numeric',
+            year: 'numeric'
+        }
+
+        var date = new Date(date);
+        return date.toLocaleString('ru', options);
+    }
+
+    renderAllCompletedProjects(projects) {
         return (
             <Container>
                 <Row>
@@ -52,11 +64,10 @@ export default class Business extends Component {
                                         width={300}
                                     />
                                     <Media.Body>
+                                        <h3>Завершён:</h3><h3>{this.getDate(project.endDate)}</h3>
                                         <h5>{project.name}</h5>
                                         <p>{project.shortDescription}</p>
-                                        <Link to={{ pathname: "/show", state : project}}>
-                                            <Button variant="outline-info" className="mb-1">Подробнее</Button>
-                                        </Link>
+                                        <Button variant="danger" disabled="disabled" className="mb-1">Подробнее</Button>
                                     </Media.Body>
                                 </Media>
                             )

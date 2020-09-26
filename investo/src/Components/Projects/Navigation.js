@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Row, ListGroup, Card } from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 export default class Navigation extends Component {
@@ -13,31 +14,38 @@ export default class Navigation extends Component {
         }
     }
 
-    componentDidMount() {
-        const url = `https://localhost:44344/api/Search/Search/`;
-        axios.get(url).then(result => {
-            const response = result.data;
-            this.setState({ projects: response, loading: false });
-        })
-    }
-
+   
     render() {
         return (
             <Col md="3">
                 <h5 className="text-center mt-5">Категории</h5>
                 <Card bg="dark">
                     <ListGroup variant="flush">
-                        <ListGroup.Item action href="design" variant="secondary">Дизайн</ListGroup.Item>
-                        <ListGroup.Item action href="business" variant="secondary">Музыка</ListGroup.Item>
-                        <ListGroup.Item action href="initiatives" variant="secondary">Бизнес</ListGroup.Item>
-                        <ListGroup.Item action href="music" variant="secondary">Инициативы</ListGroup.Item>
+                        <ListGroup.Item variant="secondary">
+                            <Link to='/design' style={{ color: "black",  textDecoration: 'none' }}>Дизайн</Link>
+                        </ListGroup.Item>
+                        <ListGroup.Item variant="secondary">
+                            <Link to='/business' style={{ color: "black", textDecoration: 'none' }}>Бизнес</Link>
+                        </ListGroup.Item>
+                        <ListGroup.Item variant="secondary">
+                            <Link to='/music' style={{ color: "black",  textDecoration: 'none' }}>Музыка</Link>
+                        </ListGroup.Item>
+                        <ListGroup.Item variant="secondary">
+                            <Link to='/initiatives' style={{ color: "black", textDecoration: 'none' }}>Инициативы</Link>
+                        </ListGroup.Item>
                     </ListGroup>
                 </Card>
                 <Card bg="dark" className="mt-3">
                     <ListGroup variant="flush">
-                        <ListGroup.Item action href="design" variant="secondary">Завершающиеся</ListGroup.Item>
-                        <ListGroup.Item action href="business" variant="secondary">Новые</ListGroup.Item>
-                        <ListGroup.Item action href="initiatives" variant="secondary">Завершённые</ListGroup.Item>
+                        <ListGroup.Item variant="secondary">
+                            <Link to='/completed' style={{ color: "black", textDecoration: 'none' }}>Завершённые</Link>
+                        </ListGroup.Item>
+                        <ListGroup.Item variant="secondary">
+                            <Link to='/new' style={{ color: "black", textDecoration: 'none' }}>Новые</Link>
+                        </ListGroup.Item>
+                        <ListGroup.Item variant="secondary">
+                            <Link to='/ending' style={{ color: "black", textDecoration: 'none' }}>Завершающиеся</Link>
+                        </ListGroup.Item>                        
                     </ListGroup>
                 </Card>
             </Col>

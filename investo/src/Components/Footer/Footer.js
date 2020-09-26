@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import logo from '../../img/logo.jpeg';
 import { Container, Row, Nav } from 'react-bootstrap';
 import About from "../Anthill/About";
-import { Route, Router, Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default class Footer extends Component {
@@ -34,7 +34,7 @@ export default class Footer extends Component {
                                     <ul className="list-unstyled">
                                         <li><Link to= {{ pathname: "/about", state: "second"}}>О краунфандинге</Link></li>
                                         <li><Link to= {{ pathname: "/about", state: "third" }}>Помощь</Link></li>
-                                        <li><a href="/">Проекты</a></li>
+                                        <li><Link to="/all">Проекты</Link></li>
                                     </ul>
                                 </div>
                                 <div className="col-md-3 col-sm-6">

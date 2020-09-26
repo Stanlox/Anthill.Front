@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { withRouter } from 'react-router';
 import axios from 'axios';
 
-export class Find extends Component {
+class _Find extends Component {
     constructor(props) {
         super(props);
 
@@ -18,10 +18,10 @@ export class Find extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        axios.get("https://localhost:44344/api/Search/Search/" + this.state.value).then(project => {
-            const responce = project.data;
+        axios.get(`https://localhost:44344/api/Search/Projects?nameProject=${this.state.value}`).then(result => {
+            const responce = result.data;
             const { history } = this.props;
-            history.push({ pathname: '/Projects', state: responce });
+            history.push({ pathname: '/all', state: responce });
         })
     }
 
@@ -38,3 +38,5 @@ export class Find extends Component {
         )
     }
 } 
+
+export const Find = withRouter(_Find)

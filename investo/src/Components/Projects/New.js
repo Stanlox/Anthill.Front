@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Media, Container, Col, Row, Button} from 'react-bootstrap';
+import { Media, Container, Col, Row, Button } from 'react-bootstrap';
 import Navigation from './Navigation';
 import axios from 'axios';
 import {Link} from "react-router-dom";
 
-export default class Business extends Component {
+export default class New extends Component {
     constructor(props) {
         super(props);
 
@@ -14,9 +14,10 @@ export default class Business extends Component {
         }
     }
 
+
+
     componentDidMount() {
-        const category = "Бизнес";
-        axios.get(`https://localhost:44344/api/Search/Category?nameCategory=${category}`).then(result => {
+        axios.get("https://localhost:44344/api/Search/New").then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
         })
@@ -28,7 +29,7 @@ export default class Business extends Component {
                 <em>Loading...</em>
             </p>
         ) : (
-                this.renderAllBusinessProjects(this.state.projects)
+                this.renderAllNewProjects(this.state.projects)
             );
 
         return (
@@ -38,7 +39,8 @@ export default class Business extends Component {
         );
     }
 
-    renderAllBusinessProjects(projects) {
+
+    renderAllNewProjects(projects) {
         return (
             <Container>
                 <Row>
@@ -54,7 +56,7 @@ export default class Business extends Component {
                                     <Media.Body>
                                         <h5>{project.name}</h5>
                                         <p>{project.shortDescription}</p>
-                                        <Link to={{ pathname: "/show", state : project}}>
+                                        <Link to={{ pathname: "/show", state: project }}>
                                             <Button variant="outline-info" className="mb-1">Подробнее</Button>
                                         </Link>
                                     </Media.Body>
