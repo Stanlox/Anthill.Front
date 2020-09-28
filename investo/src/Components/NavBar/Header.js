@@ -19,6 +19,7 @@ import Ending from '../Projects/Ending';
 import New from '../Projects/New';
 import ShowFullProject from '../Projects/FullShowProject';
 import '../../../node_modules/font-awesome/css/font-awesome.css';
+import Favourites from '../Projects/Favourites';
 
 export default class Header extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ export default class Header extends Component {
             <>
                 <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
                     <Container>
-                        <Link to ="/">
+                        <Link to="/">
                             <img
                                 src={logo}
                                 height="30"
@@ -50,13 +51,15 @@ export default class Header extends Component {
                                     <Link style={{ textDecoration: 'none' }} to="/contacts"><font size="4" face="Arial" className="text-muted ml-2">Задать вопрос</font></Link>
                                 </Container>
                             </Nav>
-                            <img src="https://img.icons8.com/material/24/000000/star--v1.png" className="mr-2"/>
+                            <Link to="/favourites">
+                                <img src="https://img.icons8.com/material/24/000000/star--v1.png" className="mr-2" />
+                            </Link>
                             <Find />
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
 
-                
+
                 <Link to="/login">
                     <Form style={{ position: "absolute", top: "10px", right: "125px" }}>
                         <Button variant="btn btn-success" type="submit">Log in</Button>
@@ -67,7 +70,7 @@ export default class Header extends Component {
                         <Button variant="btn btn-success" type="submit">Sign in</Button>
                     </Form>
                 </Link>
-                <img src="https://img.icons8.com/metro/26/000000/forgot-password.png" style={{ position: "absolute", top: "10px", right: "10px" }} className="mt-1"/>
+                <img src="https://img.icons8.com/metro/26/000000/forgot-password.png" style={{ position: "absolute", top: "10px", right: "10px" }} className="mt-1" />
                 <>
                     <Switch>
                         <Route exact path='/' component={Home} />
@@ -80,10 +83,11 @@ export default class Header extends Component {
                         <Route exact path='/design' component={Design} />
                         <Route exact path='/music' component={Music} />
                         <Route exact path='/initiatives' component={Initiatives} />
-                        <Route exact path='/completed' component={Completed}/>
-                        <Route exact path='/ending' component={Ending}/>
-                        <Route exact path='/new' component={New}/>
-                        <Route exact path='/show' component={ShowFullProject}/>
+                        <Route exact path='/completed' component={Completed} />
+                        <Route exact path='/ending' component={Ending} />
+                        <Route exact path='/new' component={New} />
+                        <Route exact path='/show' component={ShowFullProject} />
+                        <Route exact path='/favourites' component={Favourites} />
                     </Switch>
                 </>
             </>

@@ -17,7 +17,7 @@ export default class All extends Component {
     componentDidMount() {
 
         if (this.props.location?.state) return;
-        axios.get("https://localhost:44344/api/Search/Projects/").then(result => {
+        axios.get("https://localhost:44383/api/Search/Projects/").then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
         })
@@ -63,8 +63,11 @@ export default class All extends Component {
                                     <Media.Body>
                                         <h5>{project.name}</h5>
                                         <p>{project.shortDescription}</p>
-                                        <Link to={{ pathname: "/show", state : project}}>
+                                        <Link to={{ pathname: "/show", state: project }}>
                                             <Button variant="outline-info" className="mb-1">Подробнее</Button>
+                                        </Link>
+                                        <Link to={{ pathname: "/favourites", state: project }}>
+                                            <Button variant="outline-info" className="mb-1">В избранное</Button>
                                         </Link>
                                     </Media.Body>
                                 </Media>

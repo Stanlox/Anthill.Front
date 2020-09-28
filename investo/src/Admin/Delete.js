@@ -34,7 +34,7 @@ export class Delete extends Component {
         const { id } = this.props.match.params;
         const { history } = this.props;
 
-        axios.delete("https://localhost:44344/api/Admin/EditProject/" + id).then(result => {
+        axios.delete("https://localhost:44383/api/Admin/EditProject/" + id).then(result => {
             history.push('/projects');
         })
     }

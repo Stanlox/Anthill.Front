@@ -94,7 +94,7 @@ export class Update extends Component {
             categoryId: this.state.categoryId
         }
 
-        axios.put("https://localhost:44344/api/Admin/SaveEditProject/" + project).then(result => {
+        axios.put("https://localhost:44383/api/Admin/SaveEditProject/" + project).then(result => {
             history.push('/projects');
         })
     }

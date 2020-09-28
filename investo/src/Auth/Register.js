@@ -34,7 +34,7 @@ export default class Register extends Component {
                 'content-type': 'application/json'
             },
             method: 'post',
-            url: 'https://localhost:44344/api/Account/Register',
+            url: 'https://localhost:44383/api/Account/Register',
             params: {
                 email,
                 password,

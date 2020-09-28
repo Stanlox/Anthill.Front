@@ -23,7 +23,7 @@ export default class Home extends Component {
     }
 
     EndingProjects() {
-        axios.get("https://localhost:44344/api/Search/Terminating").then(
+        axios.get("https://localhost:44383/api/Search/Terminating").then(
             result => {
                 const responce = result.data;
                 this.setState({ projects: responce });
@@ -35,7 +35,6 @@ export default class Home extends Component {
         return (
             <div className="container">
                 <h2 className="text-center mt-4">Завершающиеся</h2>
-
                 <CardDeck>
                     {
                         projects.map(project =>
@@ -51,11 +50,14 @@ export default class Home extends Component {
                                         {project.shortDescription}
                                     </Card.Text>
                                 </Card.Body>
-                                <Card.Footer>
-                                    <Link to={{ pathname: "/show", state : project}}>
+                                <Card.Link>
+                                    <Link to={{ pathname: "/show", state : project}} className="ml-2">
                                         <Button variant="primary" className="mb-1">Подробнее</Button>
                                     </Link>
-                                </Card.Footer>
+                                    <Link to={{ pathname: "/favourites", state : project}} className="ml-2">
+                                        <Button variant="primary" className="mb-1">В избранное</Button>
+                                    </Link>
+                                </Card.Link>
                             </Card>
                         )
                     }

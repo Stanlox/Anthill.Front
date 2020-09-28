@@ -16,9 +16,10 @@ export default class Initiatives extends Component {
 
     componentDidMount() {
         const category = "Инициативы";
-        axios.get(`https://localhost:44344/api/Search/Category?nameCategory=${category}`).then(result => {
+        axios.get(`https://localhost:44383/api/Search/Category?nameCategory=${category}`).then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
+            console.log(this.state.projects);
         })
     }
 
@@ -56,6 +57,9 @@ export default class Initiatives extends Component {
                                         <p>{project.shortDescription}</p>
                                         <Link to={{ pathname: "/show", state: project }}>
                                             <Button variant="outline-info" className="mb-1">Подробнее</Button>
+                                        </Link>
+                                        <Link to={{ pathname: "/favourites", state: project }}>
+                                            <Button variant="outline-info" className="mb-1">В избранное</Button>
                                         </Link>
                                     </Media.Body>
                                 </Media>

@@ -21,7 +21,7 @@ export class AllProjects extends Component {
     }
 
     ProjectData(){
-        const url = `https://localhost:44344/api/Search/Search/`;
+        const url = `https://localhost:44383/api/Search/Search/`;
         axios.get(url).then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });

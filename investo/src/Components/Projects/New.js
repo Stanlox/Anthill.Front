@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Media, Container, Col, Row, Button } from 'react-bootstrap';
 import Navigation from './Navigation';
 import axios from 'axios';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class New extends Component {
     constructor(props) {
@@ -17,7 +17,7 @@ export default class New extends Component {
 
 
     componentDidMount() {
-        axios.get("https://localhost:44344/api/Search/New").then(result => {
+        axios.get("https://localhost:44383/api/Search/New").then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
         })
@@ -58,6 +58,9 @@ export default class New extends Component {
                                         <p>{project.shortDescription}</p>
                                         <Link to={{ pathname: "/show", state: project }}>
                                             <Button variant="outline-info" className="mb-1">Подробнее</Button>
+                                        </Link>
+                                        <Link to={{ pathname: "/favourites", state: project }}>
+                                            <Button variant="outline-info" className="mb-1">В избранное</Button>
                                         </Link>
                                     </Media.Body>
                                 </Media>

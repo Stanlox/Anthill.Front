@@ -17,7 +17,7 @@ export default class Ending extends Component {
 
 
     componentDidMount() {
-        axios.get("https://localhost:44344/api/Search/Terminating").then(result => {
+        axios.get("https://localhost:44383/api/Search/Terminating").then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
         })
@@ -57,6 +57,9 @@ export default class Ending extends Component {
                                         <p>{project.shortDescription}</p>
                                         <Link to={{ pathname: "/show", state: project }}>
                                             <Button variant="outline-info" className="mb-1">Подробнее</Button>
+                                        </Link>
+                                        <Link to={{ pathname: "/favourites", state: project }}>
+                                            <Button variant="outline-info" className="mb-1">В избранное</Button>
                                         </Link>
                                     </Media.Body>
                                 </Media>

@@ -17,7 +17,7 @@ export default class Completed extends Component {
 
 
     componentDidMount() {
-        axios.get("https://localhost:44344/api/Search/Completed").then(result => {
+        axios.get("https://localhost:44383/api/Search/Completed").then(result => {
             const response = result.data;
             this.setState({ projects: response, loading: false });
         })
