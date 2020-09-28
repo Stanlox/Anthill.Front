@@ -3,8 +3,10 @@ import { Media, Container, Col, Row, Button } from 'react-bootstrap';
 import Navigation from './Navigation';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import {connect} from'react-redux';
+import {updateFavorite} from '../../Redux/actions/ProjectsActions';
 
-export default class New extends Component {
+class _New extends Component {
     constructor(props) {
         super(props);
 
@@ -13,8 +15,6 @@ export default class New extends Component {
             loading: true
         }
     }
-
-
 
     componentDidMount() {
         axios.get("https://localhost:44383/api/Search/New").then(result => {
@@ -59,9 +59,7 @@ export default class New extends Component {
                                         <Link to={{ pathname: "/show", state: project }}>
                                             <Button variant="outline-info" className="mb-1">Подробнее</Button>
                                         </Link>
-                                        <Link to={{ pathname: "/favourites", state: project }}>
-                                            <Button variant="outline-info" className="mb-1">В избранное</Button>
-                                        </Link>
+                                            <Button variant="outline-info" onClick= {() => this.props.setFavorite(project)} className="mb-1 ml-2">В избранное</Button>
                                     </Media.Body>
                                 </Media>
                             )
@@ -73,3 +71,9 @@ export default class New extends Component {
         );
     }
 }
+
+export default connect(() => {}, (dispatch) => {
+    return {
+        setFavorite : (project) => dispatch(updateFavorite(project))
+    }
+})(_New)

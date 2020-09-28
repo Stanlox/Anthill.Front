@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import _Carousel from './Carousel';
 import { CardDeck, Container, Card, Button } from 'react-bootstrap';
 import axios from 'axios';
-import {Link} from "react-router-dom";
-export default class Home extends Component {
+import { Link } from "react-router-dom";
+import {connect} from'react-redux';
+import {updateFavorite} from '../Redux/actions/ProjectsActions';
+
+ class _Home extends Component {
     constructor(props) {
         super(props);
-
+        console.log(props);
         this.state = { projects: props.location?.state ? props.location.state : [] };
         this.EndingProjects = this.EndingProjects.bind(this);
 
@@ -51,12 +54,10 @@ export default class Home extends Component {
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Link>
-                                    <Link to={{ pathname: "/show", state : project}} className="ml-2">
+                                    <Link to={{ pathname: "/show", state: project }} className="ml-2">
                                         <Button variant="primary" className="mb-1">Подробнее</Button>
                                     </Link>
-                                    <Link to={{ pathname: "/favourites", state : project}} className="ml-2">
-                                        <Button variant="primary" className="mb-1">В избранное</Button>
-                                    </Link>
+                                    <Button variant="primary" onClick= {() => this.props.setFavorite(project)}  className="mb-1 ml-2">В избранное</Button>
                                 </Card.Link>
                             </Card>
                         )
@@ -75,3 +76,9 @@ export default class Home extends Component {
         );
     }
 }
+
+export default connect(() => {}, (dispatch) => {
+    return {
+        setFavorite : (project) => dispatch(updateFavorite(project))
+    }
+})(_Home)

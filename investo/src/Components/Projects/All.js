@@ -3,8 +3,10 @@ import { Media, Container, Col, Row, Button } from 'react-bootstrap';
 import axios from 'axios';
 import Navigation from './Navigation';
 import { Link } from "react-router-dom";
+import {connect} from'react-redux';
+import {updateFavorite} from '../../Redux/actions/ProjectsActions';
 
-export default class All extends Component {
+class _All extends Component {
     constructor(props) {
         super(props);
 
@@ -66,9 +68,7 @@ export default class All extends Component {
                                         <Link to={{ pathname: "/show", state: project }}>
                                             <Button variant="outline-info" className="mb-1">Подробнее</Button>
                                         </Link>
-                                        <Link to={{ pathname: "/favourites", state: project }}>
-                                            <Button variant="outline-info" className="mb-1">В избранное</Button>
-                                        </Link>
+                                            <Button variant="outline-info" onClick= {() => this.props.setFavorite(project)} className="mb-1 ml-2">В избранное</Button>
                                     </Media.Body>
                                 </Media>
                             )
@@ -80,3 +80,9 @@ export default class All extends Component {
         );
     }
 }
+
+export default connect(() => {}, (dispatch) => {
+    return {
+        setFavorite : (project) => dispatch(updateFavorite(project))
+    }
+})(_All)

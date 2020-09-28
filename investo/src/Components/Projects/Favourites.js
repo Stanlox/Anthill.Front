@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Container } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {deleteFavorite} from '../../Redux/actions/ProjectsActions';
 
-export default class Favourites extends Component {
+class _Favourites extends Component {
     constructor(props) {
         super(props);
 
@@ -12,13 +13,10 @@ export default class Favourites extends Component {
     }
 
     render() {
-        let arrayOfProjects = this.state.projects;
-        console.log(this.state.projects);
-        let kek = Object.keys(arrayOfProjects).map((key) => [Number(key), arrayOfProjects[key]]);
-        let content = this.state.projects.length == 0 ? (
+        let content = this.props.favoritesProjects.length == 0 ? (
             <h2 style={{textAlign: "center"}} className="mt-5">В избранном нечего нет</h2>
         ) : (
-            this.renderFavouritesProjects(kek)
+            this.renderFavoritesProjects(this.props.favoritesProjects)
             );
         return (
             <div>
@@ -27,14 +25,14 @@ export default class Favourites extends Component {
         );
     }
 
-    renderFavouritesProjects(projects) {
+    renderFavoritesProjects(projects) {
         return (
             <Container>
                 {
                     projects.map(project =>
                         <div className="alert alert-danger mt-3">
-                            {project.name}
-                            <Button variant="danger" style={{ position: "absolute", top: "0", right: "0" }}>
+                            Название: {project.name}
+                            <Button variant="danger" onClick = {() => this.props.deleteFavorite(project.id)} style={{ position: "absolute", top: "0", right: "0" }}>
                                 ❌
                             </Button>
                             <hr/>
@@ -45,3 +43,13 @@ export default class Favourites extends Component {
         );
     }
 }
+
+export default connect((state) => {
+    return {
+        favoritesProjects : state.favorites.projects
+    }
+},  (dispatch) => {
+    return{
+        deleteFavorite : (id) => dispatch(deleteFavorite(id))
+    }
+})(_Favourites)
