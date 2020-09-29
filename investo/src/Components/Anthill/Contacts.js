@@ -22,6 +22,10 @@ export default class Contacts extends Component {
         }
     }
 
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+
     onSubmitButtonSend(e) {
         e.preventDefault();
 

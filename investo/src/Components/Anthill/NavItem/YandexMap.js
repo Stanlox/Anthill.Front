@@ -4,6 +4,7 @@ import '../../../style/YandexMap.css';
 
 export default class RenderGoogleMap extends Component {
     componentDidMount() {
+        window.scrollTo(0, 0);
         window.ymaps.ready(() => {
             this.myMap = new window.ymaps.Map("map", {
                 center: [53.877852, 27.542990],
